@@ -6,6 +6,7 @@ import configureStore from './store';
 import { authInfoSuccess } from './ducks/auth.duck';
 import firebase from './firebase-config';
 import './index.css';
+import routeConfiguration from './routeConfiguration';
 import Routes from './Routes';
 import * as serviceWorker from './serviceWorker';
 
@@ -17,7 +18,7 @@ firebase.auth().onAuthStateChanged(user => {
     <React.StrictMode>
       <Provider store={store}>
         <BrowserRouter>
-          <Routes />
+          <Routes routes={routeConfiguration()}/>
         </BrowserRouter>
       </Provider>
     </React.StrictMode>,

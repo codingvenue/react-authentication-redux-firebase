@@ -2,17 +2,25 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { NotFoundPage } from './containers';
-import routeConfiguration from './routeConfiguration';
 
-const RouteComponent = props => {
-    const { route, isAuthenticated, ...rest } = props;
-    const { auth, component: Component, authPage = '/login' } = route;
-    const show = !auth || isAuthenticated;
-    if (show) return <Component {...rest} />
-    else return <Redirect to={authPage} />
+class RouteComponent extends React.Component {
+
+    render() {
+        const { route, isAuthenticated, ...rest } = this.props;
+        const { auth, component: Component, authPage = '/login' } = route;
+        const show = !auth || isAuthenticated;
+        return show ? (
+            <Component {...rest} />
+        ) : (
+                <Redirect to={authPage} />
+            );
+    }
 };
 
-const Routes = () => {
+const Routes = props => {
+
+    const { routes } = props;
+
     const {
         isAuthenticated
     } = useSelector(state => state.auth);
@@ -33,10 +41,12 @@ const Routes = () => {
         )
     };
 
+    // Routes needs to be in props so
+    // react is is not rerendering page component
     return (
         <Switch>
-            {routeConfiguration().map(toRouteComponent)}
-            <Route component={NotFoundPage}/>
+            {routes.map(toRouteComponent)}
+            <Route component={NotFoundPage} />
         </Switch>
     );
 }

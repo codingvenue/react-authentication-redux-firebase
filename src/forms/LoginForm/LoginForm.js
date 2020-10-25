@@ -59,7 +59,7 @@ const LoginForm = props => {
         const {
           handleSubmit,
           inProgress,
-          onError
+          onError,
         } = formProps;
 
         const errorMessage = onError ? printErrorMessage(onError) : null;

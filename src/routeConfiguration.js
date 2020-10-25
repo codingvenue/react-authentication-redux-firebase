@@ -10,12 +10,12 @@ export default function routeConfiguration() {
         {
             name: 'SignupPage',
             path: '/signup',
-            component: props => <SignupPage {...props} />,
+            component: props => <SignupPage {...props} />
         },
         {
             name: 'LoginPage',
             path: '/login',
-            component: props => <LoginPage {...props} />,
+            component: props => <LoginPage {...props} />
         },
         {
             name: 'ProfilePage',

@@ -79,7 +79,10 @@ export const login = (email, password) => (dispatch, getState, firebase) => {
     dispatch(loginRequest());
     return firebase.auth().signInWithEmailAndPassword(email, password)
         .then(() => dispatch(loginSuccess()))
-        .catch(e => dispatch(loginError(e)));
+        .catch(e => {
+            dispatch(loginError(e));
+            throw e;
+        });
 };
 
 export const signup = params => (dispatch, getState, firebase) => {

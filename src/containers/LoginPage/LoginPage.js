@@ -35,7 +35,7 @@ const LoginPage = props => {
     const handleSubmit = values => {
         const { email, password } = values;
         const { history } = props;
-        dispatch(login(email,password))
+        dispatch(login(email, password))
             .then(() => history.push('/profile'))
             .catch(() => {/*Already handled */ })
     }
@@ -57,7 +57,7 @@ const LoginPage = props => {
                 />
             </div>
         </Container>
-    )
+    );
 };
 
 export default LoginPage;
